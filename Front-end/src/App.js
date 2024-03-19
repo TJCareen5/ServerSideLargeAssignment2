@@ -13,7 +13,7 @@ function App(){
 
  useEffect(() => {
    async function fetchMovies() {
-     const response = await axios.get("/api/movie");
+     const response = await axios.get("http://localhost:8080/api/movie");
      setMovies(response.data);
    }
    fetchMovies();
@@ -21,7 +21,7 @@ function App(){
 
  const handleAddMovie = async (newMovie) =>{
    try {
-     const response = await axios.post("/api/movie", newMovie);
+     const response = await axios.post("http://localhost:8080/api/movie", newMovie);
      setMovies([...movies, response.data]);
    } catch (error) {
      console.error("Error adding movie:", error);
@@ -30,7 +30,7 @@ function App(){
 
  const handleRemoveMovie = async (movieId) =>{
    try {
-     await axios.delete("/api/movie", { data: { id: movieId } });
+     await axios.delete("http://localhost:8080/api/movie", { data: { id: movieId } });
      setMovies(movies.filter(movie => movie._id !== movieId));
    } catch (error) {
      console.error("Error removing movie:", error);
